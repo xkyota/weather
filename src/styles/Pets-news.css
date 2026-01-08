@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+
+    --font-main: 'Montserrat', sans-serif;
+
+}
+
+.PetsNews-container {
+    padding: 8px 158px;
+}
+
+.PetsNews-heading {
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+}
+
+.PetsNews-list {}
+
+.PetsNews-list li {}
+
+.PetsNews-list-text {}
+
+.PetsNews-btn {
+    font-family: var(--font-main);
+font-weight: 500;
+font-size: 16px;
+line-height: 100%;
+letter-spacing: 0%;
+padding: 10px 30px;
+border: none;
+border-radius: 10px;
+background-color:#FFB36C;
+color: #000000;
+margin-top: 40px ;
+
+}
+
+.PetsNews-btn:hover {
+    background-color:#fabe86;
+}
