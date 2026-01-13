@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import heroBg from './img/dashbord.png'; 
-import { getCurrentDateString } from './dateUtils';
+
 import { FiSearch } from 'react-icons/fi';
+import styled from 'styled-components';
+
+import { getCurrentDateString } from './dateUtils';
+import heroBg from './img-hero/dashbord.png';
+
 const HeroSection = styled.section`
   background:
     linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),

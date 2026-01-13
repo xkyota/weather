@@ -52,7 +52,9 @@
 .detailed-cards__icon {
     width: 85px;
     height: 85px;
-    background: url("") lightgray 50% / cover no-repeat;
+
+    /*!  Url/img and any links have to be filled if u are using Vite. */
+    /* background: url("") lightgray 50% / cover no-repeat; */  
     margin-top: 10px;
 }
 
