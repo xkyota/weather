@@ -19,11 +19,29 @@
 
 }
 
-.PetsNews-list {}
+.PetsNews-list {
+    padding-top: 40px;
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+}
 
-.PetsNews-list li {}
 
-.PetsNews-list-text {}
+.PetsNews-list-img{
+     width: 270px;
+    height: 208px;
+    border-radius: 8px;
+}
+
+.PetsNews-list-text {
+     font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%; 
+      width: 270px;
+      padding-top: 20px;
+}
 
 .PetsNews-btn {
     font-family: var(--font-main);
