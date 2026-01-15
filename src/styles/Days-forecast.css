@@ -1,0 +1,71 @@
+.container8daysForecast {
+  border-radius: 20px;
+  background: #e8e8e8;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 30px 77px;
+  gap: 10px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.container8daysForecast > span {
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.dayForecast {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 10px;
+  background: #d9d9d9;
+  padding: 14px 50px;
+  height: 47px;
+}
+
+.dayForecast > p {
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  width: 15%;
+}
+
+.degrees {
+  gap: 15px;
+  display: flex;
+  align-items: center;
+
+
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.degrees > img {
+  width: 45px;
+  height: 45px;
+}
+
+.degrees > temp {
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
