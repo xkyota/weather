@@ -1,80 +1,68 @@
 import '../styles/Pets-news.css';
-import { useState, useEffect , useRef} from 'react';
+
+import {
+  useEffect,
+  useState,
+} from 'react';
+
 import axios from 'axios';
 
-
 const PetsNews = () => {
-  const [articles, setArticles] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
- const isFirstRender = useRef(true);
+    const [images, setImages] = useState([]);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
 
-  const fetchArticles = async () => {
-    setLoading(true);
+    const fetchImages = async (perPage = 12) => {
+        setLoading(true);
+        try {
+            const API_KEY = "54021536-dcf561e7ed11353144e71127c";
+            const url = `https://api.pixabay.com/api/?key=${API_KEY}&q=pets+news&image_type=photo&orientation=horizontal&per_page=${perPage}&page=${page}`;
 
-    try {
-      const url = `https://newsapi.org/v2/everything?q=tesla&from=2025-12-13&sortBy=publishedAt&apiKey=def3cafde44247a29f912ff9b1dc7d87`;
-      const response = await axios.get(url, {
-        params: {
-         
-          pageSize: 4,
-          page: page,
 
-        },
-      
-      });
-  
-      if (response.data?.articles) {
-        setArticles(prev => [...prev, ...response.data.articles]);
-        setPage(prev => prev + 1);
-      }
-    } catch (error) {
-      console.error('Помилка запиту:', error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+            const response = await axios.get(url);
 
-   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      fetchArticles();
-    }
-  }, []);
+            if (response.data?.hits) {
+                setImages(prev => [...prev, ...response.data.hits]);
+                setPage(prevPage => prevPage + 1);
+            }
+        } catch (error) {
+            console.error("Помилка запиту:", error.message);
+        } finally {
+            setLoading(false);
+        }
 
-   const showText = (text,limit) =>{
-    if(!text) return "";
-    const words = text.split(" "); 
-    if (words.length <= limit) return text;
-    return words.slice(0, limit).join(" ") + "...";
-  } 
+    };
+    useEffect(() => {
+        fetchImages(3);
+    }, []);
 
-  return (
-    <div className="PetsNews-container">
-      <p className="PetsNews-heading">Interacting with our pets</p>
-
-      <ul className="PetsNews-list">
-        {articles.map(article => (
-          <li key={article.url}>
-           
-              <img  className="PetsNews-list-img" src={article.urlToImage} alt={article.title} />
-            
-            <p className="PetsNews-list-text">
-   { showText((article.description),10) } 
+    return (
+        <div className="PetsNews-container">
+            <p className="PetsNews-heading">
+                Interacting with our pets
             </p>
-          </li>
-        ))}
-      </ul>
 
-      <button
-        className="PetsNews-btn"
-        onClick={fetchArticles}
-        disabled={loading}
-      >
-        {loading ? 'Loading...' : 'See More'}
-      </button>
-    </div>
-  );
+
+            <ul className="PetsNews-list">
+
+                {images.map(img => (
+                    <li key={img.id}>
+                        <img src={img.webformatURL} alt={img.tags} />
+                        <p className="PetsNews-list-text"> INF from API</p>
+                    </li>
+
+                ))}
+            </ul>
+
+            <button
+                className="PetsNews-btn"
+                onClick={() => fetchImages(12)}
+                disabled={loading}
+            >
+                {loading ? 'Loading...' : 'See More'}
+            </button>
+        </div>
+    );
 };
 
 export default PetsNews;
