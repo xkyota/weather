@@ -1,7 +1,8 @@
 import '../styles/Footer.css';
-import footerImg from '../components/img-footer/logo.svg';
-import instSvg from '../components/img-footer/inst.svg';
+
 import fbSvg from '../components/img-footer/fb.svg';
+import instSvg from '../components/img-footer/inst.svg';
+import footerImg from '../components/img-footer/logo.svg';
 import wsSvg from '../components/img-footer/whatsapp.svg';
 
 const Footer = () => {
