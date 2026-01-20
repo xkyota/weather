@@ -31,20 +31,20 @@ function WeatherCard({ city, country, time, date, day, icon, temp }) {
       </div>
 
       <div className="temperature">{temp}°C</div>
-      <div className="footer">
-  <button className="footer-item" aria-label="Refresh">
+      <div className="weather-footer">
+  <button className="weather-footer-item" aria-label="Refresh">
     <img src={refreshIcon} alt="Refresh" />
   </button>
 
-  <button className="footer-item" aria-label="Favorite">
+  <button className="weather-footer-item" aria-label="Favorite">
     <img src={favoriteIcon} alt="Favorite" />
   </button>
 
-  <button className="footer-item" aria-label="See more">
+  <button className="weather-footer-item" aria-label="See more">
     <h3>See more</h3>
   </button>
 
-  <button className="footer-item" aria-label="Delete">
+  <button className="weather-footer-item" aria-label="Delete">
     <img src={deleteIcon} alt="Delete" />
   </button>
 </div>

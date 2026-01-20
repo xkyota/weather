@@ -68,6 +68,31 @@
   margin-bottom: 32px;
 }
 
+.weather-footer {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: none;  
+  border: none; 
+  outline: none;   
+}
+footer-item button{
+  background: none;  
+  border: none; 
+  outline: none;   
+}
+
+.weather-footer-item img{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  border:none;
+}
+
 
 .see-more-button {
   background-color: #ffd700;
