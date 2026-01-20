@@ -9,7 +9,7 @@ import EightDayForecast from './components/Days-forecast';
 import DetailedWeatherCards from './components/Detailed-weather-cards';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Hero from './components/Hero';
+// import Hero from './components/Hero';
 import NaturalSlider from './components/Natural-slider.jsx';
 import PetsNews from './components/Pets-news';
 import WeatherCards from './components/Weather-cards';
@@ -17,7 +17,7 @@ import WeatherCards from './components/Weather-cards';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Header />
-    <Hero />
+    {/* <Hero /> */}
     <WeatherCards />
     <DetailedWeatherCards />
     <Chart />
