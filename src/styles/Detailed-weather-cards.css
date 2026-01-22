@@ -52,14 +52,36 @@
 .detailed-cards__icon {
     width: 85px;
     height: 85px;
-
-    /*!  Url/img and any links have to be filled if u are using Vite. */
-    /* background: url("") lightgray 50% / cover no-repeat; */  
     margin-top: 10px;
 }
 
 @media (max-width: 768px) {
     .detailed-cards__list {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .detailed-cards {
+        padding: 10px;
+    }
+
+    .detailed-cards__list {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .detailed-cards__label {
+        font-size: 24px;
+    }
+
+    .detailed-cards__value {
+        font-size: 14px;
+    }
+
+    .detailed-cards__icon {
+        width: 56px;
+        height: 56px;
     }
 }
