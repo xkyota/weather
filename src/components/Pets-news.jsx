@@ -41,10 +41,10 @@ const url = `https://api.thecatapi.com/v1/images/search?limit=${perPage}&page=${
   };
   
 useEffect(() => {
-    // 3. Перевіряємо: якщо ми ще не робили запит — робимо
+   
     if (!isFetched.current) {
       fetchImages(4);
-      isFetched.current = true; // Позначаємо, що запит виконано
+      isFetched.current = true; 
     }
   }, [useEffect]);
 
