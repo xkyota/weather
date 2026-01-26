@@ -25,17 +25,29 @@ const Footer = () => {
             <h3 className="contact-title">Contact us</h3>
             <ul className="contacts-list">
               <li className="contacts-item">
-                <a href="">
+                <a
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={instSvg} alt="inst" className="social-media" />
                 </a>
               </li>
               <li className="contacts-item">
-                <a href="">
+                <a
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={fbSvg} alt="facebook" className="social-media" />
                 </a>
               </li>
               <li className="contacts-item">
-                <a href="">
+                <a
+                  href="https://www.whatsapp.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img src={wsSvg} alt="whatsapp" className="social-media" />
                 </a>
               </li>
