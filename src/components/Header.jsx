@@ -15,19 +15,19 @@ const Header = () => {
           />
           <ul className="header-menu__list">
             <li className="header-menu-list__item">
-              <a href="" className="header-meni-list-item__link">
+              <p href="" className="header-meni-list-item__text">
                 Who we are
-              </a>
+              </p>
             </li>
             <li className="header-menu-list__item">
-              <a href="" className="header-meni-list-item__link">
+              <p href="" className="header-meni-list-item__text">
                 Contacts
-              </a>
+              </p>
             </li>
             <li className="header-menu-list__item">
-              <a href="" className="header-meni-list-item__link">
+              <p href="" className="header-meni-list-item__text">
                 Menu
-              </a>
+              </p>
             </li>
           </ul>
           <div className="header-container-menu__wrapper">
