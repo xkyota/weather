@@ -6,7 +6,20 @@ import favoriteIcon from './img-Weather-cards/Favorites-icon.png';
 import deleteIcon from './img-Weather-cards/Delete-icon.png';
 import mySunnyIcon from './img-Weather-cards/Sunny-icon.png';
 
-function WeatherCard({ city, country, time, date, day, icon, temp }) {
+function WeatherCard({
+  id,
+  city,
+  country,
+  time,
+  date,
+  day,
+  icon,
+  temp,
+  onRefresh,
+  onFavorite,
+  onDelete,
+  favorite,
+}) {
   return (
     <div className="container">
       <div className="weather-header">
@@ -32,11 +45,19 @@ function WeatherCard({ city, country, time, date, day, icon, temp }) {
       <div className="weather-temperature">{temp}°C</div>
 
       <div className="weather-footer">
-        <button className="weather-footer-item" aria-label="Refresh">
+        <button
+          className="weather-footer-item"
+          aria-label="Refresh"
+          onClick={() => onRefresh(id)}
+        >
           <img src={refreshIcon} alt="Refresh" />
         </button>
 
-        <button className="weather-footer-item" aria-label="Favorite">
+        <button
+          className={`weather-footer-item favorite-btn ${favorite ? 'active' : ''}`}
+          aria-label="Favorite"
+          onClick={() => onFavorite(id)}
+        >
           <img src={favoriteIcon} alt="Favorite" />
         </button>
 
@@ -44,7 +65,11 @@ function WeatherCard({ city, country, time, date, day, icon, temp }) {
           <h3>See more</h3>
         </button>
 
-        <button className="weather-footer-item" aria-label="Delete">
+        <button
+          className="weather-footer-item"
+          aria-label="Delete"
+          onClick={() => onDelete(id)}
+        >
           <img src={deleteIcon} alt="Delete" />
         </button>
       </div>
@@ -54,6 +79,77 @@ function WeatherCard({ city, country, time, date, day, icon, temp }) {
 
 export default function WeatherCards() {
   const [cards, setCards] = useState([]);
+  // Load favorites from localStorage on mount
+useEffect(() => {
+  const stored = localStorage.getItem('favoriteCards');
+  if (stored) {
+    setCards(JSON.parse(stored));
+  }
+}, []);
+
+
+  const handleRefresh = async id => {
+    const card = cards.find(c => c.id === id);
+    if (!card) return;
+
+    try {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(card.city)}&appid=a6fa06f1dd863f26d1f0ff692d53d4c8&units=metric`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Failed to refresh');
+
+      const data = await response.json();
+      const now = new Date();
+
+      let iconUrl;
+      if (data.weather[0].main.toLowerCase() === 'clear') {
+        iconUrl = mySunnyIcon;
+      } else {
+        iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      }
+
+      setCards(prev =>
+        prev.map(c =>
+          c.id === id
+            ? {
+                ...c,
+                time: now.toLocaleTimeString('en-GB', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                }),
+                date: now.toLocaleDateString('en-GB'),
+                day: now.toLocaleDateString('en-US', { weekday: 'long' }),
+                temp: Math.round(data.main.temp),
+                icon: iconUrl,
+              }
+            : c
+        )
+      );
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleFavorite = (id) => {
+  setCards(prev => {
+    const updated = prev.map(c => {
+      if (c.id === id) return { ...c, favorite: true }; // mark as favorite
+      return c;
+    });
+
+    // Save only favorites to localStorage
+    const favorites = updated.filter(c => c.favorite);
+    localStorage.setItem('favoriteCards', JSON.stringify(favorites));
+
+    return updated;
+  });
+};
+
+  const handleDelete = id => {
+    setCards(prev => prev.filter(c => c.id !== id));
+    const stored = JSON.parse(localStorage.getItem('favoriteCards') || '[]');
+    const updated = stored.filter(c => c.id !== id);
+    localStorage.setItem('favoriteCards', JSON.stringify(updated));
+  };
 
   useEffect(() => {
     // Wait a tiny bit so Hero component has mounted and created its handleSubmit
@@ -107,6 +203,7 @@ export default function WeatherCards() {
               day: now.toLocaleDateString('en-US', { weekday: 'long' }),
               icon: iconUrl,
               temp: Math.round(data.main.temp),
+              favorite: false,
             },
           ]);
 
@@ -130,7 +227,15 @@ export default function WeatherCards() {
           Search a city above to see weather cards
         </p>
       ) : (
-        cards.map(card => <WeatherCard key={card.id} {...card} />)
+        cards.map(card => (
+          <WeatherCard
+            key={card.id}
+            {...card}
+            onRefresh={handleRefresh}
+            onFavorite={handleFavorite}
+            onDelete={handleDelete}
+          />
+        ))
       )}
     </div>
   );
