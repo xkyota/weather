@@ -80,12 +80,12 @@ function WeatherCard({
 export default function WeatherCards() {
   const [cards, setCards] = useState([]);
   // Load favorites from localStorage on mount
-useEffect(() => {
-  const stored = localStorage.getItem('favoriteCards');
-  if (stored) {
-    setCards(JSON.parse(stored));
-  }
-}, []);
+  useEffect(() => {
+    const stored = localStorage.getItem('favoriteCards');
+    if (stored) {
+      setCards(JSON.parse(stored));
+    }
+  }, []);
 
 
   const handleRefresh = async id => {
@@ -111,16 +111,16 @@ useEffect(() => {
         prev.map(c =>
           c.id === id
             ? {
-                ...c,
-                time: now.toLocaleTimeString('en-GB', {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                }),
-                date: now.toLocaleDateString('en-GB'),
-                day: now.toLocaleDateString('en-US', { weekday: 'long' }),
-                temp: Math.round(data.main.temp),
-                icon: iconUrl,
-              }
+              ...c,
+              time: now.toLocaleTimeString('en-GB', {
+                hour: '2-digit',
+                minute: '2-digit',
+              }),
+              date: now.toLocaleDateString('en-GB'),
+              day: now.toLocaleDateString('en-US', { weekday: 'long' }),
+              temp: Math.round(data.main.temp),
+              icon: iconUrl,
+            }
             : c
         )
       );
@@ -130,19 +130,19 @@ useEffect(() => {
   };
 
   const handleFavorite = (id) => {
-  setCards(prev => {
-    const updated = prev.map(c => {
-      if (c.id === id) return { ...c, favorite: true }; // mark as favorite
-      return c;
+    setCards(prev => {
+      const updated = prev.map(c => {
+        if (c.id === id) return { ...c, favorite: true }; // mark as favorite
+        return c;
+      });
+
+      // Save only favorites to localStorage
+      const favorites = updated.filter(c => c.favorite);
+      localStorage.setItem('favoriteCards', JSON.stringify(favorites));
+
+      return updated;
     });
-
-    // Save only favorites to localStorage
-    const favorites = updated.filter(c => c.favorite);
-    localStorage.setItem('favoriteCards', JSON.stringify(favorites));
-
-    return updated;
-  });
-};
+  };
 
   const handleDelete = id => {
     setCards(prev => prev.filter(c => c.id !== id));
@@ -228,13 +228,7 @@ useEffect(() => {
         </p>
       ) : (
         cards.map(card => (
-          <WeatherCard
-            key={card.id}
-            {...card}
-            onRefresh={handleRefresh}
-            onFavorite={handleFavorite}
-            onDelete={handleDelete}
-          />
+          <WeatherCard key={card.id}{...card} onRefresh={handleRefresh} onFavorite={handleFavorite} onDelete={handleDelete} />
         ))
       )}
     </div>
