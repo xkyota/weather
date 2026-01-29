@@ -5,7 +5,7 @@ import refreshIcon from './img-Weather-cards/Refresh-icon.png';
 import favoriteIcon from './img-Weather-cards/Favorites-icon.png';
 import deleteIcon from './img-Weather-cards/Delete-icon.png';
 import mySunnyIcon from './img-Weather-cards/Sunny-icon.png';
-
+import DetailedWeatherCards from './Detailed-weather-cards';
 function WeatherCard({
   id,
   city,
@@ -15,9 +15,16 @@ function WeatherCard({
   day,
   icon,
   temp,
+  temp_min,
+  temp_max,
+  humidity,
+  pressure,
+  wind,
+  visibility,
   onRefresh,
   onFavorite,
   onDelete,
+  onSeeMore,
   favorite,
 }) {
   return (
@@ -61,7 +68,11 @@ function WeatherCard({
           <img src={favoriteIcon} alt="Favorite" />
         </button>
 
-        <button className="weather-footer-item" aria-label="See more">
+        <button
+          className="weather-footer-item"
+          aria-label="See more"
+          onClick={onSeeMore}
+        >
           <h3>See more</h3>
         </button>
 
@@ -79,6 +90,8 @@ function WeatherCard({
 
 export default function WeatherCards() {
   const [cards, setCards] = useState([]);
+  const [selectedCard, setSelectedCard] = useState(null);
+
   // Load favorites from localStorage on mount
   useEffect(() => {
     const stored = localStorage.getItem('favoriteCards');
@@ -86,7 +99,6 @@ export default function WeatherCards() {
       setCards(JSON.parse(stored));
     }
   }, []);
-
 
   const handleRefresh = async id => {
     const card = cards.find(c => c.id === id);
@@ -112,13 +124,16 @@ export default function WeatherCards() {
           c.id === id
             ? {
               ...c,
-              time: now.toLocaleTimeString('en-GB', {
-                hour: '2-digit',
-                minute: '2-digit',
-              }),
+              time: now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
               date: now.toLocaleDateString('en-GB'),
               day: now.toLocaleDateString('en-US', { weekday: 'long' }),
               temp: Math.round(data.main.temp),
+              temp_min: Math.round(data.main.temp_min),
+              temp_max: Math.round(data.main.temp_max),
+              humidity: data.main.humidity,
+              pressure: data.main.pressure,
+              wind: data.wind.speed,
+              visibility: data.visibility,
               icon: iconUrl,
             }
             : c
@@ -149,6 +164,12 @@ export default function WeatherCards() {
     const stored = JSON.parse(localStorage.getItem('favoriteCards') || '[]');
     const updated = stored.filter(c => c.id !== id);
     localStorage.setItem('favoriteCards', JSON.stringify(updated));
+
+    if (selectedCard?.id === id) setSelectedCard(null);
+  };
+
+  const handleSeeMore = (card) => {
+    setSelectedCard(card);
   };
 
   useEffect(() => {
@@ -195,14 +216,17 @@ export default function WeatherCards() {
               id: Date.now(),
               city: data.name,
               country: data.sys?.country || '??',
-              time: now.toLocaleTimeString('en-GB', {
-                hour: '2-digit',
-                minute: '2-digit',
-              }),
+              time: now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
               date: now.toLocaleDateString('en-GB'),
               day: now.toLocaleDateString('en-US', { weekday: 'long' }),
               icon: iconUrl,
               temp: Math.round(data.main.temp),
+              temp_min: Math.round(data.main.temp_min),
+              temp_max: Math.round(data.main.temp_max),
+              humidity: data.main.humidity,
+              pressure: data.main.pressure,
+              wind: data.wind.speed,
+              visibility: data.visibility,
               favorite: false,
             },
           ]);
@@ -221,16 +245,24 @@ export default function WeatherCards() {
   }, []);
 
   return (
-    <div className="cards-wrapper">
-      {cards.length === 0 ? (
-        <p style={{ textAlign: 'center', padding: '2rem', color: '#666' }}>
-          Search a city above to see weather cards
-        </p>
-      ) : (
-        cards.map(card => (
-          <WeatherCard key={card.id}{...card} onRefresh={handleRefresh} onFavorite={handleFavorite} onDelete={handleDelete} />
-        ))
+    <>
+      <div className="cards-wrapper">
+        {cards.length === 0 ? (
+          <p style={{ textAlign: 'center', padding: '2rem', color: '#666' }}>
+            Search a city above to see weather cards
+          </p>
+        ) : (
+          cards.map(card => (
+            <WeatherCard key={card.id}{...card} onRefresh={handleRefresh} onFavorite={handleFavorite} onDelete={handleDelete} onSeeMore={() => handleSeeMore(card)} />
+          ))
+        )}
+      </div>
+
+      {selectedCard && (
+        <div className="detailed-wrapper" style={{ marginTop: '2rem', padding: '1rem' }}>
+          <DetailedWeatherCards weatherData={selectedCard} />
+        </div>
       )}
-    </div>
+    </>
   );
 }
