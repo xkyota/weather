@@ -10,7 +10,6 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   text-align: center;
-  position: relative;
   align-self: row;
 }
 
@@ -119,4 +118,60 @@
   flex-wrap: wrap;
   gap: 90px;
   margin-top: 20px;
+}
+@media (max-width: 834px) {
+  .container{
+    width: 262px;
+    height: 352px;
+    padding-top: 12px;
+    padding-bottom: 17px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .weather-header {
+    font-size: 16px;
+    margin-bottom: 11px;
+}
+  .weather-time {
+    margin-bottom: 8px;
+  }
+  .weather-buttons {
+    margin-bottom: 12px;
+  }
+  .hourly-button{
+    font-size: 9px;
+    margin-right:21px;
+  }
+  .weekly-button{
+    font-size: 9px;
+  }
+  .date {
+    height: 15px;
+    margin-bottom:27px;
+  }
+  .weather-icon {
+    margin-bottom: 25px;
+  }
+  .weather-icon img {
+    width:76px;
+    height: 76px;
+  }
+  .weather-temperature {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+  .weather-footer-item img {
+    height: 24px;
+    width: 24px;
+  }
+  .weather-footer-item:nth-child(2) {
+    margin-left:14px;
+    margin-right:32px;
+  }
+  .weather-footer-item:nth-child(3) {
+    min-width: 81px;
+    min-height: 23px;
+    margin-right: 30px;
+    font-size: 9px;
+  }
 }
