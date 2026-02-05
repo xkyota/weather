@@ -24,6 +24,7 @@ const NaturalSlider = () => {
       prev === 0 ? images.length - 1 : prev - 1
     );
   };
+  
   return (
     <div className="natural-slider-container">
       <h2 className="natural-slider-title">Beautiful nature</h2>
