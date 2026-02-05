@@ -10,48 +10,50 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-container">
         <div className="information-div">
-          <img src={footerImg} alt="footerImg" />
-          <ul className="address-list">
-            <li className="address-item">
-              <h3 className="address-item-title">Address</h3>
-            </li>
-            <li className="address-item">
-              <p className="address-paragraph">
-                Svobody str. 35 Kyiv <br /> Ukraine
-              </p>
-            </li>
-          </ul>
-          <div className="cotacts-div">
-            <h3 className="contact-title">Contact us</h3>
-            <ul className="contacts-list">
-              <li className="contacts-item">
-                <a
-                  href="https://www.instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={instSvg} alt="inst" className="social-media" />
-                </a>
+          <img src={footerImg} alt="footerImg" className='footer-img' />
+          <div className="for-adaptation">
+            <ul className="address-list">
+              <li className="address-item">
+                <h3 className="address-item-title">Address</h3>
               </li>
-              <li className="contacts-item">
-                <a
-                  href="https://www.facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={fbSvg} alt="facebook" className="social-media" />
-                </a>
-              </li>
-              <li className="contacts-item">
-                <a
-                  href="https://www.whatsapp.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={wsSvg} alt="whatsapp" className="social-media" />
-                </a>
+              <li className="address-item">
+                <p className="address-paragraph">
+                  Svobody str. 35 Kyiv <br /> Ukraine
+                </p>
               </li>
             </ul>
+            <div className="cotacts-div">
+              <h3 className="contact-title">Contact us</h3>
+              <ul className="contacts-list">
+                <li className="contacts-item">
+                  <a
+                    href="https://www.instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={instSvg} alt="inst" className="social-media" />
+                  </a>
+                </li>
+                <li className="contacts-item">
+                  <a
+                    href="https://www.facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={fbSvg} alt="facebook" className="social-media" />
+                  </a>
+                </li>
+                <li className="contacts-item">
+                  <a
+                    href="https://www.whatsapp.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={wsSvg} alt="whatsapp" className="social-media" />
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

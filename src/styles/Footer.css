@@ -32,3 +32,30 @@
     justify-content: space-between;
     
 }
+.for-adaptation{
+    display: flex;
+    gap: 103px;
+}
+@media (max-width: 480px){
+    .footer-container{
+        width: 293px;
+    }
+    .footer{
+        height: 212px;
+    }
+    .for-adaptation{
+        flex-direction: column;
+        gap: 25px;
+    }
+    .information-div{
+        width: 293px;
+    }
+    .footer-img{
+        margin-bottom: 100px;
+    }
+}
+@media (max-width: 768px){
+    .footer-container{
+        width: 634px;
+    }
+}

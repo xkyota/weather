@@ -3,33 +3,27 @@ import '../styles/Pets-news.css';
 import {
   useEffect,
   useState,
-  useRef
+
 } from 'react';
 
 import axios from 'axios';
 
-/* const getValidDate = () => {
-  const date = new Date();
-  date.setDate(date.getDate() - 7);
-  return date.toISOString().split('T')[0];
-}; */
 const PetsNews = () => {
   const [images, setImages] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-const isFetched = useRef(false);
-  const fetchImages = async (perPage =4) => {
+
+  const fetchImages = async (perPage = 4) => {
     setLoading(true);
     try {
-    /*   const API_KEY = "54021536-dcf561e7ed11353144e71127c";
-      const fromDate = getValidDate();
-const url = `https://newsapi.org/v2/everything?q=pets&from=${fromDate}&sortBy=publishedAt&pageSize=${perPage}&page=${page}&apiKey=${API_KEY}`; */
-const url = `https://api.thecatapi.com/v1/images/search?limit=${perPage}&page=${page}&order=DESC`;
+      const API_KEY = "54021536-dcf561e7ed11353144e71127c";
+
+      const url = `https://pixabay.com/api/?key=${API_KEY}&q=pets&image_type=photo&per_page=${perPage}&page=${page}`;
 
       const response = await axios.get(url);
 
- if (Array.isArray(response.data)) {
-        setImages(prev => [...prev, ...response.data]);
+      if (response.data?.hits) {
+        setImages(prev => [...prev, ...response.data.hits]);
         setPage(prevPage => prevPage + 1);
       }
     } catch (error) {
@@ -39,13 +33,9 @@ const url = `https://api.thecatapi.com/v1/images/search?limit=${perPage}&page=${
     }
 
   };
-  
-useEffect(() => {
-   
-    if (!isFetched.current) {
-      fetchImages(4);
-      isFetched.current = true; 
-    }
+
+  useEffect(() => {
+    fetchImages(3);
   }, [useEffect]);
 
   return (
@@ -58,11 +48,12 @@ useEffect(() => {
       <ul className="PetsNews-list">
 
         {images.map(img => (
-         <li key={`${img.id}`}>
-            <div className="PetsNews-img-wrapper">
-                <img className="PetsNews-img" src={img.url} alt="A cute cat" />
-            </div>
-            <p className="PetsNews-list-text">Cat ID: {img.id}</p>
+          <li key={img.id}>   <div className="PetsNews-img-wrapper">   </div>
+            <img className="PetsNews-img" src={img.webformatURL} alt={img.tags} />
+            <p className="PetsNews-list-text"> {img.tags
+              .split(', ')
+              .slice(0, 10)
+              .join(', ')}</p>
           </li>
 
         ))}
@@ -70,7 +61,7 @@ useEffect(() => {
 
       <button
         className="PetsNews-btn"
-        onClick={() => fetchImages(4)}
+        onClick={() => fetchImages(12)}
         disabled={loading}
       >
         {loading ? 'Loading...' : 'See More'}
