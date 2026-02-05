@@ -1,0 +1,100 @@
+.modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #FFFFFF;
+  color: black;
+  padding: 24px;
+  border-radius: 14px;
+  width: 450px;
+  height: 420px;
+}
+
+.modal-title {
+  display: flex;
+  justify-content: center;
+  color: #000000;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 28px;
+  line-height: 100%;
+}
+
+.modal-wrapper {
+  margin-top: 30px;
+  margin-left: 40px;
+}
+
+.modal-wrapper__paragraph {
+  color: #000000;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.modal-wrapper__input {
+  width: 360px;
+  height: 40px;
+  background-color: #E4E4E4;
+  border: none;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.modal-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.modal-container__button {
+  background-color: #FFB36C;
+  width: 115px;
+  height: 37px;
+  border: none;
+  border-radius: 10px;
+  color: #000000;
+  color: #000000;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 13px;
+  line-height: 100%;
+  cursor: pointer;
+}
+.modal-container__login{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+.modal-container-login__paragraph {
+  font-family: Montserrat;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 10px;
+  line-height: 100%;
+}
+
+.modal-container-login__span {
+  color: #000000;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0%;
+}
