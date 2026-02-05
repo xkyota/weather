@@ -67,6 +67,41 @@ margin-top: 40px ;
 .PetsNews-btn:hover {
     background-color:#fabe86;
 }
+@media (min-width: 394px) and (max-width: 1024px) {
+
+  .PetsNews-container {
+    padding: 40px 60px;
+    margin-top: 40px;
+  }
+
+  .PetsNews-heading {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .PetsNews-list {
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .PetsNews-img {
+    width: 220px;
+    height: 170px;
+  }
+
+  .PetsNews-list-text {
+    width: 220px;
+    font-size: 14px;
+    padding-top: 14px;
+  }
+
+  .PetsNews-btn {
+    font-size: 15px;
+    padding: 9px 26px;
+    margin: 30px auto 0;
+    display: block;
+  }
+}
 
 @media (max-width: 393px) {
 *{
@@ -78,6 +113,7 @@ margin-top: 40px ;
 .PetsNews-container {
     padding: 50px 30px;
     margin: 0 auto;
+ 
   }
 .PetsNews-heading {
     font-family: var(--font-main);
@@ -86,6 +122,7 @@ margin-top: 40px ;
     line-height: 100%;
     letter-spacing: 0%;
 text-align: center;
+
 }
 
 .PetsNews-list {
