@@ -98,3 +98,24 @@
   text-decoration-style: solid;
   text-decoration-thickness: 0%;
 }
+.modal-wrapper__input.error {
+  border-color: red;
+  border-width: 2px;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.user-info:hover {
+  opacity: 0.8;
+}

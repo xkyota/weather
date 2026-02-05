@@ -53,5 +53,46 @@
 }
 
 .header-container-menu-wrapper__icon {
-  margin-top: 12px;
+  margin-top: 8px;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s;
+  background-color: transparent;
+}
+
+.user-info:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.username-text {
+  color: #000000;
+  font-weight: 600;
+  font-size: 16px;
+  margin-left: 10px;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.username-text.alt {
+  color: white;
+  background-color: #007bff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.logout-button{
+  width: 80px;
+  height: 40px;
+  margin-top: 5px;
+  margin-left: 20px;
+  background: #FFB36C;
+  border: 1px solid #FFB36C;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
 }
