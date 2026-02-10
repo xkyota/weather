@@ -35,7 +35,7 @@ const PetsNews = () => {
   };
 
   useEffect(() => {
-    fetchImages(3);
+    fetchImages(4);
   }, [useEffect]);
 
   return (
@@ -61,7 +61,7 @@ const PetsNews = () => {
 
       <button
         className="PetsNews-btn"
-        onClick={() => fetchImages(12)}
+        onClick={() => fetchImages(8)}
         disabled={loading}
       >
         {loading ? 'Loading...' : 'See More'}
